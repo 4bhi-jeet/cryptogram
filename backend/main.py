@@ -17,14 +17,17 @@ def load_quotes_from_csv(filename="backend/data.csv"):
 
 def get_random_quote():
   all_quotes = load_quotes_from_csv()
-  selected = random.choice(all_quotes)
-  return {
-    "quote": selected["quote"],
-    "author": selected["author"],
-    "book": selected["book"],
-    "year": selected["year"]
-  }
+  return random.choice(all_quotes)
+
+def generate_mapping():
+    letters = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    numbers = list(range(1, 27))
+    random.shuffle(numbers)
+    return dict(zip(letters, numbers))
 
 if __name__ == "__main__":
   quotes = get_random_quote()
+  mapping = generate_mapping()
   print(quotes)
+  print("Quote:", quotes["quote"])
+  print("Mapping:", mapping)
