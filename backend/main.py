@@ -20,10 +20,24 @@ def get_random_quote():
   return random.choice(all_quotes)
 
 def generate_mapping():
-    letters = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-    numbers = list(range(1, 27))
-    random.shuffle(numbers)
-    return dict(zip(letters, numbers))
+  letters = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+  numbers = list(range(1, 27))
+  random.shuffle(numbers)
+  return dict(zip(letters, numbers))
+
+def encrypt_quote(quote, mapping):
+  encrypted = []
+
+  for char in quote.upper():
+    if char in mapping:
+      encrypted.append(str(mapping[char]))
+    elif char == " ":
+      encrypted.append(" ")
+    else:
+      encrypted.append(char)
+  
+  return " ".join(encrypted)
+
 
 if __name__ == "__main__":
   quotes = get_random_quote()
@@ -31,3 +45,8 @@ if __name__ == "__main__":
   print(quotes)
   print("Quote:", quotes["quote"])
   print("Mapping:", mapping)
+
+  encrypted = encrypt_quote(quotes["quote"], mapping)
+  
+  print("Original:", quotes["quote"])
+  print("Encrypted:", encrypted)
