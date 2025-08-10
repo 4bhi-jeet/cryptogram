@@ -38,15 +38,27 @@ def encrypt_quote(quote, mapping):
   
   return " ".join(encrypted)
 
+def create_puzzle():
+    # Step 1: Get random quote
+    quote_data = get_random_quote()
+    
+    # Step 2: Generate mapping
+    mapping = generate_mapping()
+    
+    # Step 3: Encrypt quote
+    encrypted = encrypt_quote(quote_data["quote"], mapping)
+    
+    # Step 4: Bundle everything
+    return {
+        "encrypted_quote": encrypted,
+        "mapping": mapping,  # Later we might hide or hash this
+        "author": quote_data["author"],
+        "book": quote_data["book"],
+        "year": quote_data["year"]
+    }
 
 if __name__ == "__main__":
-  quotes = get_random_quote()
-  mapping = generate_mapping()
-  print(quotes)
-  print("Quote:", quotes["quote"])
-  print("Mapping:", mapping)
-
-  encrypted = encrypt_quote(quotes["quote"], mapping)
-  
-  print("Original:", quotes["quote"])
-  print("Encrypted:", encrypted)
+  puzzle = create_puzzle()
+  print("Encrypted Quote:", puzzle["encrypted_quote"])
+  print("Mapping:", puzzle["mapping"])
+  print(f'— {puzzle["author"]}, {puzzle["book"]} ({puzzle["year"]})')
