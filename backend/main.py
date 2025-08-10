@@ -1,23 +1,19 @@
 import csv
 import random
+import hashlib
 
 def load_quotes_from_csv(filename="backend/data.csv"):
   quotes = []
   with open(filename, mode="r", encoding="utf-8") as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
-      quotes.append({
-        "quote": row["Quote"],
-        "author": row["Spoken by"],
-        "role": row["Who"],
-        "year": row["Year"],
-        "book": row["Book"]
-      })
+      quotes.append(row)
   return quotes
 
 def get_random_quote():
-  all_quotes = load_quotes_from_csv()
-  return random.choice(all_quotes)
+  quotes = load_quotes_from_csv()
+  print(random.choice(quotes))
+  return random.choice(quotes)
 
 def generate_mapping():
   letters = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
@@ -38,6 +34,10 @@ def encrypt_quote(quote, mapping):
   
   return " ".join(encrypted)
 
+def hash_mapping(mapping):
+  mapping_str = "".join(f"{k}:{v}" for k, v in sorted(mapping.items()))
+  return hashlib.sha256(mapping_str.encode()).hexdigest()
+
 def create_puzzle():
     # Step 1: Get random quote
     quote_data = get_random_quote()
@@ -46,19 +46,21 @@ def create_puzzle():
     mapping = generate_mapping()
     
     # Step 3: Encrypt quote
-    encrypted = encrypt_quote(quote_data["quote"], mapping)
+    encrypted = encrypt_quote(quote_data["Quote"], mapping)
+
+    mapping_hash = hash_mapping(mapping)
     
     # Step 4: Bundle everything
     return {
-        "encrypted_quote": encrypted,
-        "mapping": mapping,  # Later we might hide or hash this
-        "author": quote_data["author"],
-        "book": quote_data["book"],
-        "year": quote_data["year"]
+      "encrypted_quote": encrypted,
+      "mapping_hash": mapping_hash,  # Hidden solution
+      "author": quote_data["Spoken by"],
+      "book": quote_data["Book"],
+      "year": quote_data["Year"]
     }
 
 if __name__ == "__main__":
   puzzle = create_puzzle()
-  print("Encrypted Quote:", puzzle["encrypted_quote"])
-  print("Mapping:", puzzle["mapping"])
-  print(f'— {puzzle["author"]}, {puzzle["book"]} ({puzzle["year"]})')
+  #print("Encrypted Quote:", puzzle["encrypted_quote"])
+  #print("Mapping:", puzzle["mapping"])
+  #print(f'— {puzzle["author"]}, {puzzle["book"]} ({puzzle["year"]})')
