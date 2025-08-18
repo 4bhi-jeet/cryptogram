@@ -1,0 +1,118 @@
+:root {
+  --bg-color: #ccc;
+  --text-color: #222;
+  --bg-input: #5566ea;
+  --wrong-color: #f08080;
+  --correct-color: #0f9c00;
+}
+body.dark {
+  --bg-color: #222;
+  --text-color: #ccc;
+  --bg-input: #4e4eb8;
+}
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+h1{
+  text-align: center;
+}
+
+#puzzle-wrapper {
+  position: relative;
+}
+#puzzle-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  align-items: flex-end;
+  justify-content: center;
+}
+#puzzle-wrapper.finished #puzzle-container {
+  opacity: 0.1;
+}
+#puzzle-wrapper.finished #status {
+  background-color: #222222cc;
+}
+.puzzle-word {
+  margin: 0 20px;
+}
+.puzzle-char.static {
+  margin: 0;
+  font-weight: bold;
+}
+
+.puzzle-char {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+.puzzle-char input {
+  text-align: center;
+  font-size: 28px;
+  width: 30px;
+  height: 30px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  border-bottom: 1px solid;
+  background: none;
+  color: var(--text-color);
+  cursor: pointer;
+}
+.puzzle-char input:focus {
+  outline: 0.15rem solid var(--bg-input);
+  border-radius: 5%;
+  background-color: var(--bg-input);
+}
+.number {
+  font-size: 1rem;
+  color: var(--text-color);
+  margin-top: 4px;
+  transition: all 1s ease-in-out;
+}
+
+#lives-container {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.life {
+  margin: 0 5px;
+  color: var(--text-color);
+}
+
+.hide{
+  opacity: 0;
+}
+#status {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  padding-top:30px
+}
+#status strong {
+  font-size: 1.2rem;
+}
+#status .next-btn-wrapper {
+  padding-top: 30px;
+}
+#next-btn, #restart-btn {
+  padding: 8px 20px;
+  border-radius: 5px;
+  border: 1px solid;
+  color: white;
+  background: #222;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+}
