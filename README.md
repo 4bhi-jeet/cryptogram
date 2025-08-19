@@ -60,3 +60,7 @@ python backend/app.py
 
 - Click on the URL provide e.g http://127.0.0.1:5000
 
+
+## Live Demo
+
+[Play Here (on Render)](https://d-code-jo0j.onrender.com/)
