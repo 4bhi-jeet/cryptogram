@@ -119,7 +119,7 @@ function renderPuzzle(encrypted, revealed) {
       }
 
       $.ajax({
-        url: "/check_letter",
+        url: API_BASE + "/check_letter",
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify({ token: token, letter: val }),
