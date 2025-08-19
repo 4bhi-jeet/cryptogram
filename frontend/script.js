@@ -10,7 +10,7 @@ let wrongColor = "#f08080";
 function loadPuzzle() {
   mistakes = 0;
 
-  $.getJSON("/puzzle", function (data) {
+  $.getJSON("https://d-code-jo0j.onrender.com/puzzle", function (data) {
     puzzleData = data;
     console.log(puzzleData);
     initialPuzzleData = data.encrypted;   // store encrypted tokens
