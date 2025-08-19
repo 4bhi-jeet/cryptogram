@@ -7,11 +7,14 @@ $(document).ready(function () {
     if (/^[A-Z]$/.test(key)) {
       handleKeyboardInput(key);
     }
-    console.log(e.key.toUpperCase())
   })
 
-  $("#menu").on("click", function(){
-    $(".controls").toggle();
+  $("#menu").on("click", function(e){
+    $(".controls").toggleClass("hide");
+  })
+
+  $("#closeMenu").on("click", function(e){
+    $(".controls").addClass("hide");
   })
 });
 
@@ -79,6 +82,7 @@ function restartGame() {
   renderLives();
   $("#status").empty();
   $("body").removeClass("finished");
+  $(".key").removeClass("disabled");
 
   renderPuzzle(initialPuzzleData, initialRevealed);
 }
@@ -186,10 +190,8 @@ function flashAndAdvance($cell, ms = 800) {
   setTimeout(() => {
     $cell.find(".letter-box").css("color", defaultColor);
     hideNumber($cell.data("number"));
-
-    // focus next unsolved cell
-    
   }, ms);
+
   let $next = $cell.nextAll(".puzzle-char").find(".letter-box:not(.revealed)").filter(function () {
     return !$(this).data("solved");
   }).first();
@@ -221,6 +223,10 @@ function hideNumber(num) {
   let allSolved = $cells.toArray().every(el => $(el).data("solved") === true);
   if (allSolved) {
     $(`.puzzle-char[data-number="${num}"] .number`).addClass("hide");
+    let key = $(`.puzzle-char[data-number="${num}"] .letter-box`).first().text();
+    console.log(key);
+    console.log($("#key-"+key))
+    $("#key-"+key).addClass("disabled");
   }
 }
 
@@ -280,10 +286,16 @@ function showGameFinish() {
     setTimeout(() => {
       loadPuzzle();
       $("body").removeClass("finished");
+      $(".key").removeClass("disabled")
     }, 200);
   });
 }
 
 function toggleTheme() {
   $("body").toggleClass('dark');
+}
+
+function toggleKeyboard(){
+  $("#keyboard").toggleClass("hide");
+  $(".showKeyboard").toggleClass("active");
 }

@@ -11,18 +11,15 @@
   <h1>D - Code</h1>
   <div id="menu">
     <div id="menu-icon"></div>
-    <div class="controls" id="controls">
-      <div id="closeMenu">X</div>
-      <div class="options">
-        <div class="showKeyboard">
-          <label>
-            <input type="checkbox" id="showKeyboard" checked>
-            Show Keyboard
-          </label>
-        </div>
-        <div class="buttons">
-          <button onclick="toggleTheme()">Toggle Theme</button>
-        </div>
+  </div>
+  <div class="controls hide" id="controls">
+    <div id="closeMenu">X</div>
+    <div class="options">
+      <div class="buttons showKeyboard active">
+        <button onclick="toggleKeyboard()">Enable Keyboard</button>
+      </div>
+      <div class="buttons">
+        <button onclick="toggleTheme()">Toggle Theme</button>
       </div>
     </div>
   </div>

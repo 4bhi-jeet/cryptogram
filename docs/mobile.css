@@ -20,10 +20,12 @@ body {
   padding: 1rem;
   max-width: 800px;
   margin: 0 auto;
+  height: 100vh;
 }
 
 h1 {
   text-align: center;
+  height: 4vh;
 }
 
 #keyboard {
@@ -32,6 +34,20 @@ h1 {
   gap: 8px;
   margin-top: 20px;
   user-select: none;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  bottom: 5px;
+  left: 0;
+  background: var(--bg-color);
+  padding: 8px 0;
+  border: 1px solid;
+  box-sizing: border-box;
+}
+
+.showKeyboard.active button {
+  background-color: var(--bg-input);
+  color: #ccc;
 }
 
 .keyboard-row {
@@ -42,10 +58,11 @@ h1 {
 }
 
 .key {
-  width: 9%;
-  /* fixed width relative to screen */
+  flex: 0 0 auto;
+  padding: 10px 0;
+  font-size: 18px;
+  width: 8.5%;
   max-width: 60px;
-  /* don’t let them grow too large */
   padding: 14px 0;
   font-size: 18px;
   font-weight: bold;
@@ -58,19 +75,24 @@ h1 {
   transition: background 0.2s;
 }
 
-.key:active {
-  background: var(--bg-color);
+.key.active{
+  background-color: var(--bg-input);
+}
+.key.disabled{
+  opacity: 0.2;
 }
 
 #puzzle-wrapper {
   position: relative;
+  height: 64vh;
+  overflow-y: auto;
 }
 
 #puzzle-container {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 15px;
+  margin-bottom: 80px;
   align-items: flex-end;
   justify-content: center;
 }
@@ -84,7 +106,7 @@ h1 {
 }
 
 .puzzle-word {
-  margin: 0 20px;
+  margin: 0 10px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -98,12 +120,12 @@ h1 {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px;
+  margin: 5px;
 }
 
 .puzzle-char .letter-box {
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   width: 30px;
   height: 30px;
   text-transform: uppercase;
@@ -144,6 +166,7 @@ h1 {
   text-align: center;
   margin-bottom: 15px;
   font-size: 24px;
+  height: 4vh;
 }
 
 .life {
@@ -168,6 +191,9 @@ h1 {
   z-index: 1;
 }
 
+#status h1 {
+  height: auto;
+}
 #status strong {
   font-size: 1.2rem;
 }
@@ -190,55 +216,13 @@ h1 {
 
 /* 🔹 Responsive for mobile */
 /* @media (max-width: 768px) { */
-  body {
-    height: 90vh;
-  }
 
-  h1 {
-    height: 4vh;
-  }
 
-  .lives-container {
-    height: 4vh;
-  }
 
-  #puzzle-wrapper {
-    height: 64vh;
-    overflow-y: auto;
-  }
 
-  #keyboard {
-    width: 100%;
-    height: 20vh;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background: var(--bg-color);
-    padding: 8px 0;
-    border: 1px solid;
-    box-sizing: border-box;
-  }
 
-  .key {
-    flex: 0 0 auto;
-    width: 9%;
-    padding: 10px 0;
-    font-size: 18px;
-  }
-  .key.active{
-    background-color: var(--bg-input);
-  }
-  .puzzle-word {
-    margin: 0;
-  }
 
-  .puzzle-char {
-    margin: 3px;
-  }
 
-  .puzzle-char .letter-box {
-    font-size: 1.5rem;
-  }
 /* } */
 
 #menu {
@@ -258,17 +242,20 @@ h1 {
 body.dark #menu #menu-icon {
   background-image: url("images/settings-dark.svg");
 }
-
+.controls.hide {
+  z-index: -1;
+}
 .controls {
   position: absolute;
   width: 50vw;
   max-width: 300px;
-  right: 40px;
-  top: 0;
+  right: 50px;
+  top: 30px;
   background: var(--bg-color);
   border: 2px solid;
   padding: 5px;
   border-radius: 6px;
+  z-index: 1;
 }
 
 #closeMenu {
@@ -278,11 +265,11 @@ body.dark #menu #menu-icon {
 }
 .controls .options div button {
   width: 100%;
-      font-size: 1rem;
-        padding: 6px 12px;
+  font-size: 1rem;
+  padding: 6px 12px;
 }
 .controls .options div {
-  margin: 10px 5px;
+  margin: 25px 5px;
 }
 .buttons button {
   background-color: var(--bg-color);
