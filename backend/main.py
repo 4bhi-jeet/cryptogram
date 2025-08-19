@@ -1,12 +1,17 @@
 import csv
 import random
 import hashlib
+import os
 from collections import Counter, defaultdict
 
 
-def load_quotes_from_csv(filename="backend/data.csv"):
+def load_quotes_from_csv(filename="data.csv"):
   quotes = []
-  with open(filename, mode="r", encoding="utf-8") as csvfile:
+
+  base_dir = os.path.dirname(os.path.abspath(__file__))
+  file_path = os.path.join(base_dir, filename)
+
+  with open(file_path, mode="r", encoding="utf-8") as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
       quotes.append(row)

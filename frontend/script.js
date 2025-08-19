@@ -7,10 +7,18 @@ let defaultColor = "var(--text-color)";
 let correctColor = "#0f9c00";
 let wrongColor = "#f08080";
 
+const LOCAL_API = "http://127.0.0.1:5000";
+const PROD_API = "https://d-code-jo0j.onrender.com";
+
+const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+  ? LOCAL_API
+  : PROD_API;
+
+
 function loadPuzzle() {
   mistakes = 0;
 
-  $.getJSON("https://d-code-jo0j.onrender.com/puzzle", function (data) {
+  $.getJSON(API_BASE + "/puzzle", function (data) {
     puzzleData = data;
     console.log(puzzleData);
     initialPuzzleData = data.encrypted;   // store encrypted tokens
