@@ -3,10 +3,11 @@ import os
 from main import create_puzzle, hash_mapping
 from flask_cors import CORS
 
-app = Flask(__name__, static_folder="../frontend", static_url_path="")
+app = Flask(__name__, static_folder="../docs", static_url_path="")
 CORS(app, origins=[
-    "http://127.0.0.1:5500",   # VSCode Live Server
-    "https://d-code-jo0j.onrender.com"    # backend itself
+    "http://127.0.0.1:5500",
+    "https://d-code-jo0j.onrender.com",
+    "https://4bhi-jeet.github.io/"
 ])
 # Store the current puzzle in memory
 current_puzzle = None
