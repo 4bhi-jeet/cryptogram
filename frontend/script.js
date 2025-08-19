@@ -128,7 +128,8 @@ function renderPuzzle(encrypted, revealed) {
             loseLife();
           }
         },
-        error: function () {
+        error: function (e) {
+          console.log(e)
           // (also fixed a typo: 'nul' -> removed)
           flashColor($wrapper, $input, wrongColor);
           setTimeout(() => $input.val(""), 0);

@@ -107,10 +107,10 @@ def create_puzzle():
     return {
       "encrypted": encrypted,
       "mapping_hash": mapping_hash,  # Hidden solution
-     # "mapping": mapping,
+      "mapping": mapping,
       "letter_counts": letter_counts,
       "total": total,
-     # "quote": quote,
+      "quote": quote,
       "revealed": revealed,
       "author": quote_data.get("Spoken by", ""),
       "who": quote_data.get("Who", ""),

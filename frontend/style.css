@@ -56,7 +56,7 @@ h1{
 }
 .puzzle-char input {
   text-align: center;
-  font-size: 28px;
+  font-size: 1.8rem;
   width: 30px;
   height: 30px;
   text-transform: uppercase;
@@ -115,4 +115,16 @@ h1{
   font-weight: bold;
   font-size: 20px;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .puzzle-word {
+    margin: 0;
+  }
+  .puzzle-char {
+    margin: 3px;
+  }
+    .puzzle-char input{
+      font-size: 1.5rem;
+    }
 }
