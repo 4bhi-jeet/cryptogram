@@ -5,15 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>D-Code</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="mobile.css" />
 </head>
 <body class="dark">
   <h1>D - Code</h1>
+  <div id="menu">
+    <div id="menu-icon"></div>
+  </div>
+  <div class="controls hide" id="controls">
+    <div id="closeMenu">X</div>
+    <div class="options">
+      <div class="buttons showKeyboard active">
+        <button onclick="toggleKeyboard()">Enable Keyboard</button>
+      </div>
+      <div class="buttons">
+        <button onclick="toggleTheme()">Toggle Theme</button>
+      </div>
+    </div>
+  </div>
   <div id="lives-container"></div>
   <div id="puzzle-wrapper">
     <div id="puzzle-container"></div>
     <div id="status"></div>
   </div>
+  <div id="keyboard"></div>
   <script src="jquery.min.js"></script>
-  <script src="script.js"></script>
+  <script src="mobile.js"></script>
 </body>
 </html>
